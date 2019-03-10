@@ -1,4 +1,4 @@
-defmodule Mercury.Accounts.UserResolver do
+defmodule MercuryWeb.Resolvers.User do
   alias Mercury.Accounts
   alias Mercury.DataStorage.Errors.NotFound
 
@@ -7,5 +7,9 @@ defmodule Mercury.Accounts.UserResolver do
       %NotFound{message: message} -> {:error, message}
       user -> {:ok, user}
     end
+  end
+
+  def create(_root, params, _info) do
+    Accounts.create_user(params)
   end
 end
