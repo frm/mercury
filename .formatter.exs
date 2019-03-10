@@ -43,6 +43,13 @@
     pipeline: :*,
     scope: :*,
     socket: :*,
-    adapter: :*
+    adapter: :*,
+
+    # absinthe
+    import_types: :*,
+    object: :*,
+    field: :*,
+    arg: :*,
+    resolve: :*
   ]
 ]

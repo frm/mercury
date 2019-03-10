@@ -2,6 +2,7 @@ defmodule Mercury.AccountsTest do
   use Mercury.DataCase
 
   alias Mercury.Accounts
+  alias Mercury.DataStorage.Errors.NotFound
 
   describe "users" do
     alias Mercury.Accounts.User
@@ -16,6 +17,16 @@ defmodule Mercury.AccountsTest do
       user = insert(:user)
 
       assert Accounts.get_user!(user.id) == user
+    end
+
+    test "get_user/1 returns the user with given id" do
+      user = insert(:user)
+
+      assert Accounts.get_user(user.id) == user
+    end
+
+    test "get_user/1 returns %NotFound{} if no user exists" do
+      assert %NotFound{} = Accounts.get_user(1)
     end
 
     test "create_user/1 with valid data creates a user" do

@@ -4,9 +4,10 @@ defmodule Mercury.Accounts do
   """
 
   import Ecto.Query, warn: false
-  alias Mercury.Repo
 
+  alias Mercury.Repo
   alias Mercury.Accounts.User
+  alias Mercury.DataStorage.Errors.NotFound
 
   @doc """
   Returns the list of users.
@@ -36,6 +37,22 @@ defmodule Mercury.Accounts do
 
   """
   def get_user!(id), do: Repo.get!(User, id)
+
+  @doc """
+  Gets a single user.
+
+  Returns `Mercury.DataStorage.Errors.NotFound` if the User does not exist.
+
+  ## Examples
+
+      iex> get_user(123)
+      %User{}
+
+      iex> get_user(456)
+      %NotFound{}
+
+  """
+  def get_user(id), do: Repo.get(User, id) || %NotFound{}
 
   @doc """
   Creates a user.
