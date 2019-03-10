@@ -8,9 +8,9 @@ defmodule Mercury.MixProject do
       app: :mercury,
       version: "0.1.0",
       elixir: "~> 1.5",
-      elixirc_paths: elixirc_paths(@env),
+      elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
-      start_permanent: @env == :prod,
+      start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
     ]
